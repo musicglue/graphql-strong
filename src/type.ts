@@ -1,4 +1,4 @@
-import { GraphQLType, GraphQLInputType, GraphQLOutputType } from 'graphql';
+import { GraphQLInputType, GraphQLOutputType, GraphQLType } from 'graphql';
 
 /**
  * A strong GraphQL type which when composed with other strong GraphQL types

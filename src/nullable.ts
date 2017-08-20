@@ -1,4 +1,4 @@
-import { StrongType, StrongInputType, StrongOutputType, StrongInputOutputType } from './type';
+import { StrongInputOutputType, StrongInputType, StrongOutputType, StrongType } from './type';
 
 /**
  * Returns a type which has the same type as the strong GraphQL type passed in,

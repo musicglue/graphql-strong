@@ -1,6 +1,8 @@
-import { GraphQLNonNull, GraphQLEnumType } from 'graphql';
-import { StrongInputOutputType } from './type';
+// tslint:disable:max-classes-per-file
+// tslint:disable:variable-name
+import { GraphQLEnumType, GraphQLNonNull } from 'graphql';
 import { trimDescriptionsInConfig } from './description';
+import { StrongInputOutputType } from './type';
 
 /**
  * Creates a type-safe non-null enum GraphQL type.
@@ -12,17 +14,17 @@ export function createEnumType <TValue>(config: StrongEnumTypeConfig<TValue>): S
 /**
  * The configuration for an enum type.
  */
-export type StrongEnumTypeConfig<TValue> = {
-  readonly name: string,
-  readonly description?: string | undefined,
+export interface StrongEnumTypeConfig<TValue> {
+  readonly name: string;
+  readonly description?: string | undefined;
   readonly values: {
     readonly [valueName: string]: {
       readonly value: TValue,
       readonly description?: string | undefined,
       readonly deprecationReason?: string | undefined,
     },
-  },
-};
+  };
+}
 
 /**
  * The non-null strong GraphQL enum type object.

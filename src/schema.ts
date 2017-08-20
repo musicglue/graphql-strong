@@ -1,4 +1,8 @@
-import { GraphQLSchema, graphql, ExecutionResult, GraphQLResolveInfo, defaultFieldResolver, OperationDefinitionNode } from 'graphql';
+// tslint:disable:object-literal-sort-keys
+// tslint:disable:member-ordering
+// tslint:disable:max-classes-per-file
+// tslint:disable:variable-name
+import { defaultFieldResolver, ExecutionResult, graphql, GraphQLNamedType, GraphQLObjectType, GraphQLResolveInfo, GraphQLSchema, OperationDefinitionNode } from 'graphql';
 import { StrongObjectType } from './object';
 
 /**
@@ -17,6 +21,7 @@ export function createSchema<TValue, TContext>(config: StrongSchemaConfig<TValue
 export interface StrongSchemaConfig<TValue, TContext> {
   readonly query: StrongObjectType<TValue, TContext>;
   readonly mutation?: StrongObjectType<TValue, TContext>;
+  readonly types?: Array<GraphQLNamedType>;
 
   /**
    * Runs only once at the beginning of an execution for this schema.
@@ -35,6 +40,7 @@ extends GraphQLSchema {
     super({
       query: config.query.ofType.clone(),
       mutation: config.mutation && config.mutation.ofType.clone(),
+      types: config.types,
     });
 
     const { onExecute } = config;
@@ -47,7 +53,7 @@ extends GraphQLSchema {
       const rootTypes = [
         this.getQueryType(),
         this.getMutationType(),
-      ].filter(Boolean);
+      ].filter(Boolean) as Array<GraphQLObjectType>;
 
       rootTypes.forEach(rootType => {
         const fields = rootType.getFields();

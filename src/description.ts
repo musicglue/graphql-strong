@@ -30,10 +30,12 @@ export function trimDescriptionsInConfig<T extends { [key: string]: any }>(confi
     }
     // If this key is `description` and the value is a string then we need to
     // trim the description.
+    // tslint:disable-next-line:one-line
     else if (key === 'description' && typeof value === 'string') {
       nextConfig[key] = trimDescription(value);
     }
     // Otherwise just copy the value over to the new config.
+    // tslint:disable-next-line:one-line
     else {
       nextConfig[key] = value;
     }

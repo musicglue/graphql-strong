@@ -64,3 +64,10 @@ export {
 export {
   trimDescription,
 } from './description';
+
+export {
+  createUnionType,
+  StrongUnionType,
+  StrongUnionTypeConfig,
+  StrongNullableUnionType,
+} from './union';

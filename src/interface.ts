@@ -1,8 +1,40 @@
-import { GraphQLNonNull, GraphQLInterfaceType, GraphQLFieldConfigMap } from 'graphql';
-import { StrongOutputType } from './type';
+// tslint:disable:max-classes-per-file
+// tslint:disable:variable-name
+import { GraphQLFieldConfigMap, GraphQLInterfaceType, GraphQLNonNull } from 'graphql';
+import { getWeakArgsMap, StrongArgsConfig } from './args';
 import { trimDescriptionsInConfig } from './description';
-import { StrongArgsConfig, getWeakArgsMap } from './args';
 import { StrongObjectType } from './object';
+import { StrongOutputType } from './type';
+
+const getInterfaceOptions = <TValue, TFieldMap extends StrongInterfaceFieldMap>(config: StrongInterfaceTypeConfig<TValue, TFieldMap>) => {
+  const options = {
+    description: config.description,
+    // Compute our fields from the fields map we were provided in the config.
+    // The format we define in our config is pretty similar to the format
+    // GraphQL.js expects.
+    fields: (): GraphQLFieldConfigMap<TValue, never> => {
+      const weakFields: GraphQLFieldConfigMap<TValue, never> = {};
+      for (const fieldName of Object.keys(config.fields)) {
+        const fieldConfig = config.fields[fieldName];
+        weakFields[fieldName] = {
+          args: fieldConfig.args && getWeakArgsMap(fieldConfig.args),
+          deprecationReason: fieldConfig.deprecationReason,
+          description: fieldConfig.description,
+          type: fieldConfig.type.getWeakOutputType(),
+        };
+      }
+      return weakFields;
+    },
+    name: config.name,
+  };
+
+  const { resolveType } = config;
+  if (resolveType !== undefined) {
+    Object.assign(options, { resolveType: (value: TValue) => resolveType(value).ofType });
+  }
+
+  return options;
+};
 
 /**
  * Creates a new strong GraphQL interface type. In addition to the runtime
@@ -26,23 +58,23 @@ export function createInterfaceType<TValue, TFieldMap extends StrongInterfaceFie
  * represents an abstract type that will be transformed into other types used in
  * defining and implementing interfaces.
  */
-export type StrongInterfaceFieldMap = {
+export interface StrongInterfaceFieldMap {
   [fieldName: string]: {
     type: any,
     args?: { [argName: string]: any },
-  },
-};
+  };
+}
 
 /**
  * The configuration object to be used when creating interface types. It
  * requires `resolveType` and `fields`.
  */
-export type StrongInterfaceTypeConfig<TValue, TFieldMap extends StrongInterfaceFieldMap> = {
-  readonly name: string,
-  readonly description?: string | undefined,
-  readonly resolveType: (value: TValue) => StrongObjectType<TValue, never>,
-  readonly fields: StrongInterfaceFieldMapConfig<TFieldMap>,
-};
+export interface StrongInterfaceTypeConfig<TValue, TFieldMap extends StrongInterfaceFieldMap> {
+  readonly name: string;
+  readonly description?: string | undefined;
+  readonly resolveType?: (value: TValue) => StrongObjectType<TValue, never>;
+  readonly fields: StrongInterfaceFieldMapConfig<TFieldMap>;
+}
 
 /**
  * The type for a fields configuration map.
@@ -54,12 +86,12 @@ export type StrongInterfaceFieldMapConfig<TFieldMap extends StrongInterfaceField
 /**
  * The configuration type for a single interface field.
  */
-export type StrongInterfaceFieldConfig<TArgs, TValue> = {
-  readonly description?: string | undefined,
-  readonly deprecationReason?: string | undefined,
-  readonly type: StrongOutputType<TValue>,
-  readonly args?: StrongArgsConfig<TArgs>,
-};
+export interface StrongInterfaceFieldConfig<TArgs, TValue> {
+  readonly description?: string | undefined;
+  readonly deprecationReason?: string | undefined;
+  readonly type: StrongOutputType<TValue>;
+  readonly args?: StrongArgsConfig<TArgs>;
+}
 
 /**
  * The object that users will use to implement an interface on a strong object
@@ -132,27 +164,7 @@ implements StrongOutputType<TValue | null | undefined> {
   private readonly _strongConfig: StrongInterfaceTypeConfig<TValue, TFieldMap>;
 
   constructor(config: StrongInterfaceTypeConfig<TValue, TFieldMap>) {
-    super({
-      name: config.name,
-      description: config.description,
-      resolveType: value => config.resolveType(value).ofType,
-      // Compute our fields from the fields map we were provided in the config.
-      // The format we define in our config is pretty similar to the format
-      // GraphQL.js expects.
-      fields: (): GraphQLFieldConfigMap<TValue, never> => {
-        const weakFields: GraphQLFieldConfigMap<TValue, never> = {};
-        for (const fieldName of Object.keys(config.fields)) {
-          const fieldConfig = config.fields[fieldName];
-          weakFields[fieldName] = {
-            description: fieldConfig.description,
-            deprecationReason: fieldConfig.deprecationReason,
-            type: fieldConfig.type.getWeakOutputType(),
-            args: fieldConfig.args && getWeakArgsMap(fieldConfig.args),
-          };
-        }
-        return weakFields;
-      },
-    });
+    super(getInterfaceOptions(config));
     this._strongConfig = config;
   }
 

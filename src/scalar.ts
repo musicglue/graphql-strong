@@ -1,6 +1,10 @@
-import { ValueNode, GraphQLNonNull, GraphQLScalarType } from 'graphql';
-import { StrongOutputType, StrongInputOutputType } from './type';
+// tslint:disable:object-literal-sort-keys
+// tslint:disable:member-ordering
+// tslint:disable:max-classes-per-file
+// tslint:disable:variable-name
+import { GraphQLNonNull, GraphQLScalarType, ValueNode } from 'graphql';
 import { trimDescriptionsInConfig } from './description';
+import { StrongInputOutputType, StrongOutputType } from './type';
 
 /**
  * Creates a GraphQL scalar type.
@@ -9,8 +13,8 @@ import { trimDescriptionsInConfig } from './description';
  * output type. If you pass both a `parseValue` and `parseLiteral` function with
  * your config, you will get an input/output type.
  */
-export function createScalarType<TInternalValue, TExternalValue>(config: StrongScalarTypeConfigWithoutInput<TInternalValue, TExternalValue>): StrongOutputType<TInternalValue>;
 export function createScalarType<TInternalValue, TExternalValue>(config: StrongScalarTypeConfigWithInput<TInternalValue, TExternalValue>): StrongInputOutputType<TInternalValue>;
+export function createScalarType<TInternalValue, TExternalValue>(config: StrongScalarTypeConfigWithoutInput<TInternalValue, TExternalValue>): StrongOutputType<TInternalValue>;
 export function createScalarType<TInternalValue, TExternalValue>(config: StrongScalarTypeConfig<TInternalValue, TExternalValue>): StrongInputOutputType<TInternalValue> {
   return new StrongScalarType(new StrongNullableScalarType(trimDescriptionsInConfig(config)));
 }
@@ -19,35 +23,35 @@ export function createScalarType<TInternalValue, TExternalValue>(config: StrongS
  * The base GraphQL scalar type config. It has optional `parseValue` and
  * `parseLiteral` properties.
  */
-type StrongScalarTypeConfig<TInternalValue, TExternalValue> = {
-  readonly name: string,
-  readonly description?: string | undefined,
-  readonly serialize: (value: TInternalValue) => TExternalValue,
-  readonly parseValue?: (value: TExternalValue) => TInternalValue | null,
-  readonly parseLiteral?: (ast: ValueNode) => TInternalValue | null,
-};
+interface StrongScalarTypeConfig<TInternalValue, TExternalValue> {
+  readonly name: string;
+  readonly description?: string | undefined;
+  readonly serialize: (value: TInternalValue) => TExternalValue;
+  readonly parseValue?: (value: TExternalValue) => TInternalValue | null;
+  readonly parseLiteral?: (ast: ValueNode) => TInternalValue | null;
+}
 
 /**
  * A GraphQL scalar type config that does not support input values, only output
  * values.
  */
-export type StrongScalarTypeConfigWithoutInput<TInternalValue, TExternalValue> = {
-  readonly name: string,
-  readonly description?: string | undefined,
-  readonly serialize: (value: TInternalValue) => TExternalValue,
-};
+export interface StrongScalarTypeConfigWithoutInput<TInternalValue, TExternalValue> {
+  readonly name: string;
+  readonly description?: string | undefined;
+  readonly serialize: (value: TInternalValue) => TExternalValue;
+}
 
 /**
  * A GraphQL scalar type config that does support input values alongside output
  * values.
  */
-export type StrongScalarTypeConfigWithInput<TInternalValue, TExternalValue> = {
-  readonly name: string,
-  readonly description?: string | undefined,
-  readonly serialize: (value: TInternalValue) => TExternalValue,
-  readonly parseValue: (value: TExternalValue) => TInternalValue | null,
-  readonly parseLiteral: (ast: ValueNode) => TInternalValue | null,
-};
+export interface StrongScalarTypeConfigWithInput<TInternalValue, TExternalValue> {
+  readonly name: string;
+  readonly description?: string | undefined;
+  readonly serialize: (value: TInternalValue) => TExternalValue;
+  readonly parseValue: (value: TExternalValue) => TInternalValue | null;
+  readonly parseLiteral: (ast: ValueNode) => TInternalValue | null;
+}
 
 /**
  * The non-null strong GraphQL scalar type object.
