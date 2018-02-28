@@ -1,13 +1,32 @@
-import { GraphQLSchema, graphql, ExecutionResult, GraphQLResolveInfo, defaultFieldResolver, OperationDefinitionNode } from 'graphql';
-import { StrongObjectType } from './object';
+// tslint:disable:object-literal-sort-keys
+// tslint:disable:member-ordering
+// tslint:disable:max-classes-per-file
+// tslint:disable:variable-name
+import {
+  defaultFieldResolver,
+  ExecutionResult,
+  graphql,
+  GraphQLNamedType,
+  GraphQLObjectType,
+  GraphQLResolveInfo,
+  GraphQLSchema,
+  OperationDefinitionNode,
+} from "graphql";
+import { StrongObjectType } from "./object";
 
 /**
  * Creates a strong, type-safe, GraphQL schema that forces correctness on
  * execution.
  */
-export function createSchema<TValue>(config: StrongSchemaConfig<TValue, {}>): StrongSchema<TValue, {}>;
-export function createSchema<TValue, TContext>(config: StrongSchemaConfig<TValue, TContext>): StrongSchema<TValue, TContext>;
-export function createSchema<TValue, TContext>(config: StrongSchemaConfig<TValue, TContext>): StrongSchema<TValue, TContext> {
+export function createSchema<TValue>(
+  config: StrongSchemaConfig<TValue, {}>,
+): StrongSchema<TValue, {}>;
+export function createSchema<TValue, TContext>(
+  config: StrongSchemaConfig<TValue, TContext>,
+): StrongSchema<TValue, TContext>;
+export function createSchema<TValue, TContext>(
+  config: StrongSchemaConfig<TValue, TContext>,
+): StrongSchema<TValue, TContext> {
   return new StrongSchema(config);
 }
 
@@ -17,6 +36,7 @@ export function createSchema<TValue, TContext>(config: StrongSchemaConfig<TValue
 export interface StrongSchemaConfig<TValue, TContext> {
   readonly query: StrongObjectType<TValue, TContext>;
   readonly mutation?: StrongObjectType<TValue, TContext>;
+  readonly types?: GraphQLNamedType[];
 
   /**
    * Runs only once at the beginning of an execution for this schema.
@@ -28,13 +48,12 @@ export interface StrongSchemaConfig<TValue, TContext> {
  * The strong GraphQL schema represents a type-safe GraphQL schema that forces
  * type correctness on execution with the `execute` method.
  */
-export
-class StrongSchema<TValue, TContext>
-extends GraphQLSchema {
+export class StrongSchema<TValue, TContext> extends GraphQLSchema {
   constructor(config: StrongSchemaConfig<TValue, TContext>) {
     super({
       query: config.query.ofType.clone(),
       mutation: config.mutation && config.mutation.ofType.clone(),
+      types: config.types,
     });
 
     const { onExecute } = config;
@@ -44,10 +63,9 @@ extends GraphQLSchema {
     if (onExecute) {
       const executedOperations = new WeakMap<OperationDefinitionNode, Promise<void>>();
 
-      const rootTypes = [
-        this.getQueryType(),
-        this.getMutationType(),
-      ].filter(Boolean);
+      const rootTypes = [this.getQueryType(), this.getMutationType()].filter(
+        Boolean,
+      ) as GraphQLObjectType[];
 
       rootTypes.forEach(rootType => {
         const fields = rootType.getFields();
@@ -56,11 +74,14 @@ extends GraphQLSchema {
           const resolver = fields[fieldName].resolve || defaultFieldResolver;
 
           // Wrap our resolver so that our `onExecute` handler runs if provided.
-          fields[fieldName].resolve = async(source, args, context, info) => {
+          fields[fieldName].resolve = async (source, args, context, info) => {
             // If we have not yet executed our root level `onExecute` function,
             // then call it.
             if (!executedOperations.has(info.operation)) {
-              executedOperations.set(info.operation, Promise.resolve(onExecute(source, context, info)));
+              executedOperations.set(
+                info.operation,
+                Promise.resolve(onExecute(source, context, info)),
+              );
             }
             // Wait for our `onExecute` function to resolve or reject whether
             // `onExecute` was called here or not.
@@ -78,7 +99,13 @@ extends GraphQLSchema {
    * function you will be forced to provide values and contexts of the correct
    * types.
    */
-  public execute(query: string, value: TValue, context: TContext, variables: { [key: string]: any } = {}, operation?: string): Promise<ExecutionResult> {
+  public execute(
+    query: string,
+    value: TValue,
+    context: TContext,
+    variables: { [key: string]: any } = {},
+    operation?: string,
+  ): Promise<ExecutionResult> {
     return graphql(this, query, value, context, variables, operation);
   }
 }
