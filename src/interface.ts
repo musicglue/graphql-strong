@@ -1,8 +1,9 @@
-import { GraphQLNonNull, GraphQLInterfaceType, GraphQLFieldConfigMap } from 'graphql';
-import { StrongOutputType } from './type';
-import { trimDescriptionsInConfig } from './description';
-import { StrongArgsConfig, getWeakArgsMap } from './args';
-import { StrongObjectType } from './object';
+// tslint:disable:max-classes-per-file variable-name
+import { GraphQLFieldConfigMap, GraphQLInterfaceType, GraphQLNonNull } from "graphql";
+import { getWeakArgsMap, StrongArgsConfig } from "./args";
+import { trimDescriptionsInConfig } from "./description";
+import { StrongObjectType } from "./object";
+import { StrongOutputType } from "./type";
 
 /**
  * Creates a new strong GraphQL interface type. In addition to the runtime
@@ -12,9 +13,15 @@ import { StrongObjectType } from './object';
  * This returns the non-null interface type. To get the nullable type just call
  * `.nullable()`.
  */
-export function createInterfaceType<TFieldMap extends StrongInterfaceFieldMap>(config: StrongInterfaceTypeConfig<{}, TFieldMap>): StrongInterfaceType<{}, TFieldMap>;
-export function createInterfaceType<TValue, TFieldMap extends StrongInterfaceFieldMap>(config: StrongInterfaceTypeConfig<TValue, TFieldMap>): StrongInterfaceType<TValue, TFieldMap>;
-export function createInterfaceType<TValue, TFieldMap extends StrongInterfaceFieldMap>(config: StrongInterfaceTypeConfig<TValue, TFieldMap>): StrongInterfaceType<TValue, TFieldMap> {
+export function createInterfaceType<TFieldMap extends StrongInterfaceFieldMap>(
+  config: StrongInterfaceTypeConfig<{}, TFieldMap>,
+): StrongInterfaceType<{}, TFieldMap>;
+export function createInterfaceType<TValue, TFieldMap extends StrongInterfaceFieldMap>(
+  config: StrongInterfaceTypeConfig<TValue, TFieldMap>,
+): StrongInterfaceType<TValue, TFieldMap>;
+export function createInterfaceType<TValue, TFieldMap extends StrongInterfaceFieldMap>(
+  config: StrongInterfaceTypeConfig<TValue, TFieldMap>,
+): StrongInterfaceType<TValue, TFieldMap> {
   return new StrongInterfaceType(new StrongNullableInterfaceType(trimDescriptionsInConfig(config)));
 }
 
@@ -26,64 +33,78 @@ export function createInterfaceType<TValue, TFieldMap extends StrongInterfaceFie
  * represents an abstract type that will be transformed into other types used in
  * defining and implementing interfaces.
  */
-export type StrongInterfaceFieldMap = {
+export interface StrongInterfaceFieldMap {
   [fieldName: string]: {
-    type: any,
-    args?: { [argName: string]: any },
-  },
-};
+    type: any;
+    args?: { [argName: string]: any };
+  };
+}
 
 /**
  * The configuration object to be used when creating interface types. It
  * requires `resolveType` and `fields`.
  */
-export type StrongInterfaceTypeConfig<TValue, TFieldMap extends StrongInterfaceFieldMap> = {
-  readonly name: string,
-  readonly description?: string | undefined,
-  readonly resolveType: (value: TValue) => StrongObjectType<TValue, never>,
-  readonly fields: StrongInterfaceFieldMapConfig<TFieldMap>,
-};
+export interface StrongInterfaceTypeConfig<TValue, TFieldMap extends StrongInterfaceFieldMap> {
+  readonly name: string;
+  readonly description?: string | undefined;
+  readonly resolveType: (value: TValue) => StrongObjectType<TValue, never>;
+  readonly fields: StrongInterfaceFieldMapConfig<TFieldMap>;
+}
 
 /**
  * The type for a fields configuration map.
  */
 export type StrongInterfaceFieldMapConfig<TFieldMap extends StrongInterfaceFieldMap> = {
-  readonly [TField in keyof TFieldMap]: StrongInterfaceFieldConfig<TFieldMap[TField]['args'], TFieldMap[TField]['type']>
+  readonly [TField in keyof TFieldMap]: StrongInterfaceFieldConfig<
+    TFieldMap[TField]["args"],
+    TFieldMap[TField]["type"]
+  >
 };
 
 /**
  * The configuration type for a single interface field.
  */
-export type StrongInterfaceFieldConfig<TArgs, TValue> = {
-  readonly description?: string | undefined,
-  readonly deprecationReason?: string | undefined,
-  readonly type: StrongOutputType<TValue>,
-  readonly args?: StrongArgsConfig<TArgs>,
-};
+export interface StrongInterfaceFieldConfig<TArgs, TValue> {
+  readonly description?: string | undefined;
+  readonly deprecationReason?: string | undefined;
+  readonly type: StrongOutputType<TValue>;
+  readonly args?: StrongArgsConfig<TArgs>;
+}
 
 /**
  * The object that users will use to implement an interface on a strong object
  * type. It is a map of field names to resolver functions.
  */
-export type StrongInterfaceImplementation<TValue, TContext, TFieldMap extends StrongInterfaceFieldMap> = {
-  readonly [TField in keyof TFieldMap]: StrongInterfaceFieldImplementation<TValue, TFieldMap[TField]['args'], TContext, TFieldMap[TField]['type']>
+export type StrongInterfaceImplementation<
+  TValue,
+  TContext,
+  TFieldMap extends StrongInterfaceFieldMap
+> = {
+  readonly [TField in keyof TFieldMap]: StrongInterfaceFieldImplementation<
+    TValue,
+    TFieldMap[TField]["args"],
+    TContext,
+    TFieldMap[TField]["type"]
+  >
 };
 
 /**
  * The resolver function that is used to implement an interface on a strong
  * object type.
  */
-export type StrongInterfaceFieldImplementation<TSourceValue, TArgs, TContext, TValue> =
-  (source: TSourceValue, args: TArgs, context: TContext) => TValue | Promise<TValue>;
+export type StrongInterfaceFieldImplementation<TSourceValue, TArgs, TContext, TValue> = (
+  source: TSourceValue,
+  args: TArgs,
+  context: TContext,
+) => TValue | Promise<TValue>;
 
 /**
  * The interface type class created by `createInterfaceType`. It is
  * non-null, to get the nullable variant just call `.nullable()`.
  */
-export
-class StrongInterfaceType<TValue, TFieldMap extends StrongInterfaceFieldMap>
-extends GraphQLNonNull<StrongNullableInterfaceType<TValue, TFieldMap>>
-implements StrongOutputType<TValue> {
+export class StrongInterfaceType<TValue, TFieldMap extends StrongInterfaceFieldMap>
+  extends GraphQLNonNull<StrongNullableInterfaceType<TValue, TFieldMap>>
+  implements StrongOutputType<TValue> {
   // The required type flags.
   public readonly _strongType: true = true;
   public readonly _strongOutputType: true = true;
@@ -94,8 +115,12 @@ implements StrongOutputType<TValue> {
   }
 
   // The required type conversion methods.
-  public getWeakType(): this { return this; }
-  public getWeakOutputType(): this { return this; }
+  public getWeakType(): this {
+    return this;
+  }
+  public getWeakOutputType(): this {
+    return this;
+  }
 
   /**
    * Returns the inner nullable version of this type without mutating anything.
@@ -120,10 +145,9 @@ implements StrongOutputType<TValue> {
  * is reversed in `graphql-strong`, this is what actually extends the GraphQL.js
  * interface type.
  */
-export
-class StrongNullableInterfaceType<TValue, TFieldMap extends StrongInterfaceFieldMap>
-extends GraphQLInterfaceType
-implements StrongOutputType<TValue | null | undefined> {
+export class StrongNullableInterfaceType<TValue, TFieldMap extends StrongInterfaceFieldMap>
+  extends GraphQLInterfaceType
+  implements StrongOutputType<TValue | null | undefined> {
   // The required type flags.
   public readonly _strongType: true = true;
   public readonly _strongOutputType: true = true;
@@ -133,9 +157,7 @@ implements StrongOutputType<TValue | null | undefined> {
 
   constructor(config: StrongInterfaceTypeConfig<TValue, TFieldMap>) {
     super({
-      name: config.name,
       description: config.description,
-      resolveType: value => config.resolveType(value).ofType,
       // Compute our fields from the fields map we were provided in the config.
       // The format we define in our config is pretty similar to the format
       // GraphQL.js expects.
@@ -144,21 +166,27 @@ implements StrongOutputType<TValue | null | undefined> {
         for (const fieldName of Object.keys(config.fields)) {
           const fieldConfig = config.fields[fieldName];
           weakFields[fieldName] = {
-            description: fieldConfig.description,
-            deprecationReason: fieldConfig.deprecationReason,
-            type: fieldConfig.type.getWeakOutputType(),
             args: fieldConfig.args && getWeakArgsMap(fieldConfig.args),
+            deprecationReason: fieldConfig.deprecationReason,
+            description: fieldConfig.description,
+            type: fieldConfig.type.getWeakOutputType(),
           };
         }
         return weakFields;
       },
+      name: config.name,
+      resolveType: value => config.resolveType(value).ofType,
     });
     this._strongConfig = config;
   }
 
   // The required type conversion methods.
-  public getWeakType(): this { return this; }
-  public getWeakOutputType(): this { return this; }
+  public getWeakType(): this {
+    return this;
+  }
+  public getWeakOutputType(): this {
+    return this;
+  }
 
   /**
    * Returns self.
