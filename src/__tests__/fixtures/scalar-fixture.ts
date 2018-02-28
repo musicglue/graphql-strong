@@ -1,9 +1,10 @@
-import { StrongInputType, StrongOutputType, createScalarType } from '../../index';
+// tslint:disable:object-literal-sort-keys
+import { createScalarType, StrongInputType, StrongOutputType } from "../../index";
 
 // Works for just output types
 {
   const type = createScalarType<string, number>({
-    name: 'foo',
+    name: "foo",
     serialize: value => parseInt(value, 10),
   });
 }
@@ -11,7 +12,7 @@ import { StrongInputType, StrongOutputType, createScalarType } from '../../index
 // Cannot have `parseValue` without `parseLiteral`
 {
   const type = createScalarType<string, number>({
-    name: 'foo',
+    name: "foo",
     serialize: value => parseInt(value, 10),
     parseValue: value => String(value),
   });
@@ -20,7 +21,7 @@ import { StrongInputType, StrongOutputType, createScalarType } from '../../index
 // Cannot have `parseLiteral` without `parseValue`
 {
   const type = createScalarType<string, number>({
-    name: 'foo',
+    name: "foo",
     serialize: value => parseInt(value, 10),
     parseLiteral: value => value.kind,
   });
@@ -29,12 +30,12 @@ import { StrongInputType, StrongOutputType, createScalarType } from '../../index
 // Will not let an output type be an input type
 {
   const type1: StrongOutputType<string> = createScalarType<string, number>({
-    name: 'foo',
+    name: "foo",
     serialize: value => parseInt(value, 10),
   });
 
   const type2: StrongInputType<string> = createScalarType<string, number>({
-    name: 'foo',
+    name: "foo",
     serialize: value => parseInt(value, 10),
   });
 }
@@ -42,14 +43,14 @@ import { StrongInputType, StrongOutputType, createScalarType } from '../../index
 // Will let an input-output type be both an input and output type
 {
   const type1: StrongOutputType<string> = createScalarType<string, number>({
-    name: 'foo',
+    name: "foo",
     serialize: value => parseInt(value, 10),
     parseValue: value => String(value),
     parseLiteral: value => value.kind,
   });
 
   const type2: StrongInputType<string> = createScalarType<string, number>({
-    name: 'foo',
+    name: "foo",
     serialize: value => parseInt(value, 10),
     parseValue: value => String(value),
     parseLiteral: value => value.kind,

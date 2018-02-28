@@ -1,7 +1,9 @@
-import { trimDescription, trimDescriptionsInConfig } from '../description';
+// tslint:disable:object-literal-sort-keys
+import { trimDescription, trimDescriptionsInConfig } from "../description";
 
-test('trimDescription will correctly format a multiline string into a description', () => {
-  expect(trimDescription(`
+test("trimDescription will correctly format a multiline string into a description", () => {
+  expect(
+    trimDescription(`
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam dapibus
     diam eu convallis. Nullam tincidunt mi quis purus congue, eu commodo eros
     dapibus. Vivamus maximus ex nisi, sit amet varius dui vestibulum et. Duis in
@@ -34,23 +36,25 @@ test('trimDescription will correctly format a multiline string into a descriptio
 
     - Cras dapibus sem id vulputate commodo.
     - Ut viverra ipsum eget sem dignissim porttitor.
-  `)).toMatchSnapshot();
+  `),
+  ).toMatchSnapshot();
 });
 
-test('trimDescriptionsInConfig will trim descriptions in nested objects', () => {
+test("trimDescriptionsInConfig will trim descriptions in nested objects", () => {
   class NotPlainObject {
     constructor(object) {
       Object.assign(this, object);
     }
   }
 
-  expect(trimDescriptionsInConfig({
-    a: 1,
-    b: 2,
-    description: ` Hello, world!    `,
-    c: {
-      d: {
-        description: `
+  expect(
+    trimDescriptionsInConfig({
+      a: 1,
+      b: 2,
+      description: ` Hello, world!    `,
+      c: {
+        d: {
+          description: `
           Have you ever been down the water spout?
           To the very bottom of the water system?
           There you will find a little aligator
@@ -60,18 +64,19 @@ test('trimDescriptionsInConfig will trim descriptions in nested objects', () => 
           and now I’m very lonely ‘cuz he’s gone.
           I miss him.
         `,
-        e: 3,
-        f: 4,
-        g: {
-          h: 5,
-          i: 6,
+          e: 3,
+          f: 4,
+          g: {
+            h: 5,
+            i: 6,
+          },
+          j: new NotPlainObject({
+            k: 7,
+            l: 8,
+            description: `    Space allowed!!!     `,
+          }),
         },
-        j: new NotPlainObject({
-          k: 7,
-          l: 8,
-          description: `    Space allowed!!!     `,
-        }),
       },
-    },
-  })).toMatchSnapshot();
+    }),
+  ).toMatchSnapshot();
 });

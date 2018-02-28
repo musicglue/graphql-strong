@@ -1,4 +1,5 @@
-import { createSchema, StrongObjectType } from '../../index';
+// tslint:disable:object-literal-sort-keys
+import { createSchema, StrongObjectType } from "../../index";
 
 // Execute works fine with correct value and context
 {
@@ -6,7 +7,7 @@ import { createSchema, StrongObjectType } from '../../index';
     query: null as any,
   });
 
-  schema.execute('', 1, 2);
+  schema.execute("", 1, 2);
 }
 
 // Execute fails with incorrect value
@@ -15,7 +16,7 @@ import { createSchema, StrongObjectType } from '../../index';
     query: null as any,
   });
 
-  schema.execute('', 'string', 2);
+  schema.execute("", "string", 2);
 }
 
 // Execute fails with incorrect context
@@ -24,7 +25,7 @@ import { createSchema, StrongObjectType } from '../../index';
     query: null as any,
   });
 
-  schema.execute('', 1, 'string');
+  schema.execute("", 1, "string");
 }
 
 // Type works fine with correct value and context

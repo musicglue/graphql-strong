@@ -1,5 +1,12 @@
-import { GraphQLInputType, GraphQLOutputType, GraphQLInputObjectType, GraphQLObjectType, GraphQLEnumType } from 'graphql';
-import { StrongInputType, StrongOutputType, wrapWeakType } from '../../index';
+// tslint:disable:object-literal-sort-keys
+import {
+  GraphQLEnumType,
+  GraphQLInputObjectType,
+  GraphQLInputType,
+  GraphQLObjectType,
+  GraphQLOutputType,
+} from "graphql";
+import { StrongInputType, StrongOutputType, wrapWeakType } from "../../index";
 
 const anyType: any = null;
 
@@ -33,7 +40,7 @@ const anyType: any = null;
 
 // Input/output types will wrap to both input and outputs 1
 {
-  const type = wrapWeakType<{}>(anyType as (GraphQLInputType & GraphQLOutputType));
+  const type = wrapWeakType<{}>(anyType as GraphQLInputType & GraphQLOutputType);
   const input: StrongInputType<{}> = type;
   const output: StrongOutputType<{}> = type;
 }
