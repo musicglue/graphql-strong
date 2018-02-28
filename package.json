@@ -34,7 +34,9 @@
   "scripts": {
     "preversion": "npm run ci",
     "prepublish": "npm run build",
-    "lint": "tslint 'src/**/*.ts'",
+    "format": "npm run lint && npm run prettify",
+    "lint": "tslint --fix 'src/**/*.ts'",
+    "prettify": "find src -name '*.ts' | xargs prettier --write --parser ${npm_package_prettier_parser} --trailing-comma ${npm_package_prettier_trailingComma} --print-width ${npm_package_prettier_printWidth} --list-different",
     "test": "jest",
     "test-watch": "jest --watch",
     "ci": "npm run lint && npm run test",
@@ -49,6 +51,7 @@
     "@types/node": "^9.4.6",
     "graphql": "^0.13.1",
     "jest": "^22.4.2",
+    "prettier": "^1.11.0",
     "tslint": "^5.9.1",
     "typescript": "^2.7.2"
   },
@@ -66,5 +69,10 @@
     "testRegex": "/__tests__/[^.]+-test.ts$",
     "browser": false,
     "testEnvironment": "node"
+  },
+  "prettier": {
+    "parser": "typescript",
+    "printWidth": 100,
+    "trailingComma": "all"
   }
 }
