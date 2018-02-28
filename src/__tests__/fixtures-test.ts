@@ -3,13 +3,19 @@ import * as fs from "fs";
 import * as path from "path";
 import * as ts from "typescript";
 
-const compilerOptions: ts.CompilerOptions = {
-  target: ts.ScriptTarget.ES2015,
+const tsConfig = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, "..", "..", "tsconfig.json"), "utf-8"),
+);
+const globalConfig = ts.convertCompilerOptionsFromJson(
+  tsConfig.compilerOptions,
+  path.resolve(__dirname, "..", ".."),
+);
+const localConfig: ts.CompilerOptions = {
+  noUnusedLocals: false,
   noEmit: true,
-  noImplicitAny: true,
-  strictNullChecks: true,
   include: [path.resolve(__dirname, "../../src")],
 };
+const compilerOptions: ts.CompilerOptions = Object.assign({}, globalConfig.options, localConfig);
 
 const fixturesDir = path.resolve(__dirname, "fixtures");
 const fixtureNames = fs.readdirSync(fixturesDir);
