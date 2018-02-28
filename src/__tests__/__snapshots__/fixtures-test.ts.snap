@@ -72,9 +72,9 @@ Array [
         },
       },
     },
-    "start": 589,
+    "start": 623,
     "text": "{
-    name: 'Foobar',
+    name: \\"Foobar\\",
     resolveType: undefined as any,
     fields: {
       foo: { type: IntegerType },
@@ -122,9 +122,9 @@ Array [
         },
       },
     },
-    "start": 891,
+    "start": 925,
     "text": "{
-    name: 'Foobar',
+    name: \\"Foobar\\",
     resolveType: undefined as any,
     fields: {
       foo: { type: StringType },
@@ -157,9 +157,9 @@ Array [
         },
       },
     },
-    "start": 1192,
+    "start": 1226,
     "text": "{
-    name: 'Foobar',
+    name: \\"Foobar\\",
     resolveType: undefined as any,
     fields: {
       foo: { type: StringType },
@@ -191,9 +191,9 @@ Array [
         },
       },
     },
-    "start": 1448,
+    "start": 1482,
     "text": "{
-    name: 'Foobar',
+    name: \\"Foobar\\",
     resolveType: undefined as any,
     fields: {
       bar: { type: StringType.nullable() },
@@ -295,9 +295,9 @@ Array [
         },
       },
     },
-    "start": 2192,
+    "start": 2226,
     "text": "{
-    name: 'Foobar',
+    name: \\"Foobar\\",
     resolveType: undefined as any,
     fields: {
       x: {
@@ -375,9 +375,9 @@ Array [
         },
       },
     },
-    "start": 2620,
+    "start": 2654,
     "text": "{
-    name: 'Foobar',
+    name: \\"Foobar\\",
     resolveType: undefined as any,
     fields: {
       x: {
@@ -440,9 +440,9 @@ Array [
         },
       },
     },
-    "start": 3047,
+    "start": 3081,
     "text": "{
-    name: 'Foobar',
+    name: \\"Foobar\\",
     resolveType: undefined as any,
     fields: {
       x: {
@@ -504,9 +504,9 @@ Array [
         },
       },
     },
-    "start": 3425,
+    "start": 3459,
     "text": "{
-    name: 'Foobar',
+    name: \\"Foobar\\",
     resolveType: undefined as any,
     fields: {
       x: {
@@ -521,7 +521,7 @@ Array [
   Object {
     "category": 1,
     "code": 2345,
-    "length": 6,
+    "length": 2,
     "messageText": Object {
       "category": 1,
       "code": 2345,
@@ -533,23 +533,21 @@ Array [
         "next": undefined,
       },
     },
-    "start": 4446,
-    "text": "{
-
-  }",
+    "start": 4498,
+    "text": "{}",
   },
   Object {
     "category": 1,
     "code": 7031,
     "length": 5,
     "messageText": "Binding element 'email' implicitly has an 'any' type.",
-    "start": 4529,
+    "start": 4585,
     "text": "email",
   },
   Object {
     "category": 1,
     "code": 2345,
-    "length": 25,
+    "length": 29,
     "messageText": Object {
       "category": 1,
       "code": 2345,
@@ -571,17 +569,17 @@ Array [
         },
       },
     },
-    "start": 4883,
+    "start": 4943,
     "text": "{
-    name: () => 42,
-  }",
+      name: () => 42,
+    }",
   },
   Object {
     "category": 1,
     "code": 7031,
     "length": 5,
     "messageText": "Binding element 'email' implicitly has an 'any' type.",
-    "start": 4985,
+    "start": 5057,
     "text": "email",
   },
 ]
@@ -592,11 +590,11 @@ Array [
   Object {
     "category": 1,
     "code": 2345,
-    "length": 74,
+    "length": 66,
     "messageText": Object {
       "category": 1,
       "code": 2345,
-      "messageText": "Argument of type '{ name: string; type: StrongInputOutputType<number>; resolve: ({url}: Image) => string; }' is not assignable to parameter of type 'StrongFieldConfig<Image, {}, {}, string>'.",
+      "messageText": "Argument of type '{ name: string; type: StrongInputOutputType<number>; resolve: ({ url }: Image) => string; }' is not assignable to parameter of type 'StrongFieldConfig<Image, {}, {}, string>'.",
       "next": Object {
         "category": 1,
         "code": 2326,
@@ -612,28 +610,28 @@ Array [
             "next": Object {
               "category": 1,
               "code": 2658,
-              "messageText": "Type 'StrongInputOutputType<number>' provides no match for the signature '(): StrongOutputType<string>'",
+              "messageText": "Type 'StrongInputOutputType<number>' provides no match for the signature '(): StrongOutputType<string>'.",
               "next": undefined,
             },
           },
         },
       },
     },
-    "start": 1536,
+    "start": 1589,
     "text": "{
-    name: 'url',
-    type: FloatType,
-    resolve: ({ url }) => url,
-  }",
+  name: \\"url\\",
+  type: FloatType,
+  resolve: ({ url }) => url,
+}",
   },
   Object {
     "category": 1,
     "code": 2345,
-    "length": 75,
+    "length": 67,
     "messageText": Object {
       "category": 1,
       "code": 2345,
-      "messageText": "Argument of type '{ name: string; type: StrongObjectType<Person, {}>; resolve: ({url}: Image) => string; }' is not assignable to parameter of type 'StrongFieldConfig<Image, {}, {}, string>'.",
+      "messageText": "Argument of type '{ name: string; type: StrongObjectType<Person, {}>; resolve: ({ url }: Image) => string; }' is not assignable to parameter of type 'StrongFieldConfig<Image, {}, {}, string>'.",
       "next": Object {
         "category": 1,
         "code": 2326,
@@ -649,28 +647,28 @@ Array [
             "next": Object {
               "category": 1,
               "code": 2658,
-              "messageText": "Type 'StrongObjectType<Person, {}>' provides no match for the signature '(): StrongOutputType<string>'",
+              "messageText": "Type 'StrongObjectType<Person, {}>' provides no match for the signature '(): StrongOutputType<string>'.",
               "next": undefined,
             },
           },
         },
       },
     },
-    "start": 1664,
+    "start": 1706,
     "text": "{
-    name: 'url',
-    type: PersonType,
-    resolve: ({ url }) => url,
-  }",
+  name: \\"url\\",
+  type: PersonType,
+  resolve: ({ url }) => url,
+}",
   },
   Object {
     "category": 1,
     "code": 2345,
-    "length": 105,
+    "length": 97,
     "messageText": Object {
       "category": 1,
       "code": 2345,
-      "messageText": "Argument of type '{ name: string; type: StrongInputType<string>; resolve: ({url}: Image) => string; }' is not assignable to parameter of type 'StrongFieldConfig<Image, {}, {}, string>'.",
+      "messageText": "Argument of type '{ name: string; type: StrongInputType<string>; resolve: ({ url }: Image) => string; }' is not assignable to parameter of type 'StrongFieldConfig<Image, {}, {}, string>'.",
       "next": Object {
         "category": 1,
         "code": 2326,
@@ -686,28 +684,28 @@ Array [
             "next": Object {
               "category": 1,
               "code": 2658,
-              "messageText": "Type 'StrongInputType<string>' provides no match for the signature '(): StrongOutputType<string>'",
+              "messageText": "Type 'StrongInputType<string>' provides no match for the signature '(): StrongOutputType<string>'.",
               "next": undefined,
             },
           },
         },
       },
     },
-    "start": 1819,
+    "start": 1850,
     "text": "{
-    name: 'url',
-    type: (null as any) as StrongInputType<string>,
-    resolve: ({ url }) => url,
-  }",
+  name: \\"url\\",
+  type: (null as any) as StrongInputType<string>,
+  resolve: ({ url }) => url,
+}",
   },
   Object {
     "category": 1,
     "code": 2345,
-    "length": 88,
+    "length": 80,
     "messageText": Object {
       "category": 1,
       "code": 2345,
-      "messageText": "Argument of type '{ name: string; type: StrongInputOutputType<number>; resolve: ({size}: Image) => string; }' is not assignable to parameter of type 'StrongFieldConfig<Image, {}, {}, number | null | undefined>'.",
+      "messageText": "Argument of type '{ name: string; type: StrongInputOutputType<number>; resolve: ({ size }: Image) => string; }' is not assignable to parameter of type 'StrongFieldConfig<Image, {}, {}, number | null | undefined>'.",
       "next": Object {
         "category": 1,
         "code": 2326,
@@ -715,7 +713,7 @@ Array [
         "next": Object {
           "category": 1,
           "code": 2322,
-          "messageText": "Type '({size}: Image) => string' is not assignable to type '(source: Image, args: {}, context: {}) => number | Promise<number | null | undefined> | null | un...'.",
+          "messageText": "Type '({ size }: Image) => string' is not assignable to type '(source: Image, args: {}, context: {}) => number | Promise<number | null | undefined> | null | un...'.",
           "next": Object {
             "category": 1,
             "code": 2322,
@@ -725,21 +723,21 @@ Array [
         },
       },
     },
-    "start": 2177,
+    "start": 2186,
     "text": "{
-    name: 'size',
-    type: FloatType,
-    resolve: ({ size }) => 'not a number!',
-  }",
+  name: \\"size\\",
+  type: FloatType,
+  resolve: ({ size }) => \\"not a number!\\",
+}",
   },
   Object {
     "category": 1,
     "code": 2345,
-    "length": 77,
+    "length": 69,
     "messageText": Object {
       "category": 1,
       "code": 2345,
-      "messageText": "Argument of type '{ name: string; type: StrongInputOutputType<number>; resolve: ({size}: Image) => number | undefin...' is not assignable to parameter of type 'StrongFieldConfig<Image, {}, {}, number>'.",
+      "messageText": "Argument of type '{ name: string; type: StrongInputOutputType<number>; resolve: ({ size }: Image) => number | undef...' is not assignable to parameter of type 'StrongFieldConfig<Image, {}, {}, number>'.",
       "next": Object {
         "category": 1,
         "code": 2326,
@@ -747,7 +745,7 @@ Array [
         "next": Object {
           "category": 1,
           "code": 2322,
-          "messageText": "Type '({size}: Image) => number | undefined' is not assignable to type '(source: Image, args: {}, context: {}) => number | Promise<number>'.",
+          "messageText": "Type '({ size }: Image) => number | undefined' is not assignable to type '(source: Image, args: {}, context: {}) => number | Promise<number>'.",
           "next": Object {
             "category": 1,
             "code": 2322,
@@ -762,21 +760,21 @@ Array [
         },
       },
     },
-    "start": 2327,
+    "start": 2325,
     "text": "{
-    name: 'size',
-    type: FloatType,
-    resolve: ({ size }) => size,
-  }",
+  name: \\"size\\",
+  type: FloatType,
+  resolve: ({ size }) => size,
+}",
   },
   Object {
     "category": 1,
     "code": 2345,
-    "length": 95,
+    "length": 87,
     "messageText": Object {
       "category": 1,
       "code": 2345,
-      "messageText": "Argument of type '{ name: string; type: StrongInputOutputType<string | null | undefined>; resolve: ({url}: Image) =...' is not assignable to parameter of type 'StrongFieldConfig<Image, {}, {}, string>'.",
+      "messageText": "Argument of type '{ name: string; type: StrongInputOutputType<string | null | undefined>; resolve: ({ url }: Image)...' is not assignable to parameter of type 'StrongFieldConfig<Image, {}, {}, string>'.",
       "next": Object {
         "category": 1,
         "code": 2326,
@@ -792,24 +790,24 @@ Array [
             "next": Object {
               "category": 1,
               "code": 2658,
-              "messageText": "Type 'StrongInputOutputType<string | null | undefined>' provides no match for the signature '(): StrongOutputType<string>'",
+              "messageText": "Type 'StrongInputOutputType<string | null | undefined>' provides no match for the signature '(): StrongOutputType<string>'.",
               "next": undefined,
             },
           },
         },
       },
     },
-    "start": 2683,
+    "start": 2659,
     "text": "{
-    name: 'url',
-    type: createNullableType(StringType),
-    resolve: ({ url }) => url,
-  }",
+  name: \\"url\\",
+  type: createNullableType(StringType),
+  resolve: ({ url }) => url,
+}",
   },
   Object {
     "category": 1,
     "code": 2345,
-    "length": 313,
+    "length": 321,
     "messageText": Object {
       "category": 1,
       "code": 2345,
@@ -833,7 +831,7 @@ Array [
               "next": Object {
                 "category": 1,
                 "code": 2658,
-                "messageText": "Type 'StrongInputOutputType<string>' provides no match for the signature '(): StrongOutputType<Image | null | undefined>'",
+                "messageText": "Type 'StrongInputOutputType<string>' provides no match for the signature '(): StrongOutputType<Image | null | undefined>'.",
                 "next": undefined,
               },
             },
@@ -841,29 +839,32 @@ Array [
         },
       },
     },
-    "start": 3071,
+    "start": 3025,
     "text": "{
-    name: 'image',
-    type: StringType,
-    args: {
-      width: {
-        type: IntegerType,
-      },
-      height: {
-        type: createNullableType(IntegerType),
-      },
+  name: \\"image\\",
+  type: StringType,
+  args: {
+    width: {
+      type: IntegerType,
     },
-    resolve: ({ imageURL }, { width, height }) => imageURL ? {
-      url: imageURL,
-      width,
-      height,
-    } : null,
-  }",
+    height: {
+      type: createNullableType(IntegerType),
+    },
+  },
+  resolve: ({ imageURL }, { width, height }) =>
+    imageURL
+      ? {
+          url: imageURL,
+          width,
+          height,
+        }
+      : null,
+}",
   },
   Object {
     "category": 1,
     "code": 2345,
-    "length": 311,
+    "length": 319,
     "messageText": Object {
       "category": 1,
       "code": 2345,
@@ -940,29 +941,32 @@ Array [
         },
       },
     },
-    "start": 3495,
+    "start": 3454,
     "text": "{
-    name: 'image',
-    type: ImageType,
-    args: {
-      width: {
-        type: StringType,
-      },
-      height: {
-        type: createNullableType(IntegerType),
-      },
+  name: \\"image\\",
+  type: ImageType,
+  args: {
+    width: {
+      type: StringType,
     },
-    resolve: ({ imageURL }, { width, height }) => imageURL ? {
-      url: imageURL,
-      width,
-      height,
-    } : null,
-  }",
+    height: {
+      type: createNullableType(IntegerType),
+    },
+  },
+  resolve: ({ imageURL }, { width, height }) =>
+    imageURL
+      ? {
+          url: imageURL,
+          width,
+          height,
+        }
+      : null,
+}",
   },
   Object {
     "category": 1,
     "code": 2345,
-    "length": 311,
+    "length": 319,
     "messageText": Object {
       "category": 1,
       "code": 2345,
@@ -1009,60 +1013,66 @@ Array [
         },
       },
     },
-    "start": 3917,
+    "start": 3881,
     "text": "{
-    name: 'image',
-    type: ImageType,
-    args: {
-      width: {
-        type: IntegerType,
-      },
-      height: {
-        type: createNullableType(StringType),
-      },
+  name: \\"image\\",
+  type: ImageType,
+  args: {
+    width: {
+      type: IntegerType,
     },
-    resolve: ({ imageURL }, { width, height }) => imageURL ? {
-      url: imageURL,
-      width,
-      height,
-    } : null,
-  }",
+    height: {
+      type: createNullableType(StringType),
+    },
+  },
+  resolve: ({ imageURL }, { width, height }) =>
+    imageURL
+      ? {
+          url: imageURL,
+          width,
+          height,
+        }
+      : null,
+}",
   },
   Object {
     "category": 1,
     "code": 2345,
-    "length": 170,
+    "length": 194,
     "messageText": Object {
       "category": 1,
       "code": 2345,
-      "messageText": "Argument of type '{ name: string; type: StrongObjectType<Image, {}>; resolve: ({imageURL}: Person, {width, height}:...' is not assignable to parameter of type 'StrongFieldConfigWithArgs<Person, { width: number; height: number | null | undefined; }, {}, Imag...'.",
+      "messageText": "Argument of type '{ name: string; type: StrongObjectType<Image, {}>; resolve: ({ imageURL }: Person, { width, heigh...' is not assignable to parameter of type 'StrongFieldConfigWithArgs<Person, { width: number; height: number | null | undefined; }, {}, Imag...'.",
       "next": Object {
         "category": 1,
         "code": 2322,
-        "messageText": "Type '{ name: string; type: StrongObjectType<Image, {}>; resolve: ({imageURL}: Person, {width, height}:...' is not assignable to type '{ readonly args: StrongArgsConfig<{ width: number; height: number | null | undefined; }>; }'.",
+        "messageText": "Type '{ name: string; type: StrongObjectType<Image, {}>; resolve: ({ imageURL }: Person, { width, heigh...' is not assignable to type '{ readonly args: StrongArgsConfig<{ width: number; height: number | null | undefined; }>; }'.",
         "next": Object {
           "category": 1,
           "code": 2324,
-          "messageText": "Property 'args' is missing in type '{ name: string; type: StrongObjectType<Image, {}>; resolve: ({imageURL}: Person, {width, height}:...'.",
+          "messageText": "Property 'args' is missing in type '{ name: string; type: StrongObjectType<Image, {}>; resolve: ({ imageURL }: Person, { width, heigh...'.",
           "next": undefined,
         },
       },
     },
-    "start": 4345,
+    "start": 4314,
     "text": "{
-    name: 'image',
-    type: ImageType,
-    resolve: ({ imageURL }, { width, height }) => imageURL ? {
-      url: imageURL,
-      width,
-      height,
-    } : null,
-  }",
+  name: \\"image\\",
+  type: ImageType,
+  resolve: ({ imageURL }, { width, height }) =>
+    imageURL
+      ? {
+          url: imageURL,
+          width,
+          height,
+        }
+      : null,
+}",
   },
   Object {
     "category": 1,
     "code": 2345,
-    "length": 261,
+    "length": 275,
     "messageText": Object {
       "category": 1,
       "code": 2345,
@@ -1094,26 +1104,29 @@ Array [
         },
       },
     },
-    "start": 4629,
+    "start": 4619,
     "text": "{
-    name: 'image',
-    type: ImageType,
-    args: {
-      height: {
-        type: createNullableType(IntegerType),
-      },
+  name: \\"image\\",
+  type: ImageType,
+  args: {
+    height: {
+      type: createNullableType(IntegerType),
     },
-    resolve: ({ imageURL }, { width, height }) => imageURL ? {
-      url: imageURL,
-      width,
-      height,
-    } : null,
-  }",
+  },
+  resolve: ({ imageURL }, { width, height }) =>
+    imageURL
+      ? {
+          url: imageURL,
+          width,
+          height,
+        }
+      : null,
+}",
   },
   Object {
     "category": 1,
     "code": 2345,
-    "length": 240,
+    "length": 254,
     "messageText": Object {
       "category": 1,
       "code": 2345,
@@ -1145,26 +1158,29 @@ Array [
         },
       },
     },
-    "start": 5004,
+    "start": 5005,
     "text": "{
-    name: 'image',
-    type: ImageType,
-    args: {
-      width: {
-        type: IntegerType,
-      },
+  name: \\"image\\",
+  type: ImageType,
+  args: {
+    width: {
+      type: IntegerType,
     },
-    resolve: ({ imageURL }, { width, height }) => imageURL ? {
-      url: imageURL,
-      width,
-      height,
-    } : null,
-  }",
+  },
+  resolve: ({ imageURL }, { width, height }) =>
+    imageURL
+      ? {
+          url: imageURL,
+          width,
+          height,
+        }
+      : null,
+}",
   },
   Object {
     "category": 1,
     "code": 2345,
-    "length": 332,
+    "length": 340,
     "messageText": Object {
       "category": 1,
       "code": 2345,
@@ -1226,31 +1242,34 @@ Array [
         },
       },
     },
-    "start": 5371,
+    "start": 5383,
     "text": "{
-    name: 'image',
-    type: ImageType,
-    args: {
-      width: {
-        type: createNullableType(IntegerType),
-      },
-      height: {
-        type: createNullableType(IntegerType),
-      },
+  name: \\"image\\",
+  type: ImageType,
+  args: {
+    width: {
+      type: createNullableType(IntegerType),
     },
-    resolve: ({ imageURL }, { width, height }) => imageURL ? {
-      url: imageURL,
-      width,
-      height,
-    } : null,
-  }",
+    height: {
+      type: createNullableType(IntegerType),
+    },
+  },
+  resolve: ({ imageURL }, { width, height }) =>
+    imageURL
+      ? {
+          url: imageURL,
+          width,
+          height,
+        }
+      : null,
+}",
   },
   Object {
     "category": 1,
     "code": 2459,
     "length": 5,
     "messageText": "Type '{}' has no property 'width' and no string index signature.",
-    "start": 5977,
+    "start": 5972,
     "text": "width",
   },
   Object {
@@ -1258,7 +1277,7 @@ Array [
     "code": 2459,
     "length": 6,
     "messageText": "Type '{}' has no property 'height' and no string index signature.",
-    "start": 5984,
+    "start": 5979,
     "text": "height",
   },
   Object {
@@ -1266,7 +1285,7 @@ Array [
     "code": 2459,
     "length": 1,
     "messageText": "Type '{ width: number; height: number | null | undefined; }' has no property 'x' and no string index signature.",
-    "start": 7049,
+    "start": 7042,
     "text": "x",
   },
   Object {
@@ -1274,7 +1293,7 @@ Array [
     "code": 2459,
     "length": 1,
     "messageText": "Type '{ width: number; height: number | null | undefined; }' has no property 'y' and no string index signature.",
-    "start": 7052,
+    "start": 7045,
     "text": "y",
   },
   Object {
@@ -1282,13 +1301,13 @@ Array [
     "code": 2459,
     "length": 1,
     "messageText": "Type '{ width: number; height: number | null | undefined; }' has no property 'z' and no string index signature.",
-    "start": 7055,
+    "start": 7048,
     "text": "z",
   },
   Object {
     "category": 1,
     "code": 2345,
-    "length": 342,
+    "length": 350,
     "messageText": Object {
       "category": 1,
       "code": 2345,
@@ -1340,31 +1359,34 @@ Array [
         },
       },
     },
-    "start": 7712,
+    "start": 7737,
     "text": "{
-    name: 'image',
-    type: ImageType,
-    args: {
-      width: {
-        type: (null as any) as StrongOutputType<number>,
-      },
-      height: {
-        type: createNullableType(IntegerType),
-      },
+  name: \\"image\\",
+  type: ImageType,
+  args: {
+    width: {
+      type: (null as any) as StrongOutputType<number>,
     },
-    resolve: ({ imageURL }, { width, height }) => imageURL ? {
-      url: imageURL,
-      width,
-      height,
-    } : null,
-  }",
+    height: {
+      type: createNullableType(IntegerType),
+    },
+  },
+  resolve: ({ imageURL }, { width, height }) =>
+    imageURL
+      ? {
+          url: imageURL,
+          width,
+          height,
+        }
+      : null,
+}",
   },
   Object {
     "category": 1,
     "code": 2339,
     "length": 12,
     "messageText": "Property 'ImageService' does not exist on type '{}'.",
-    "start": 8937,
+    "start": 8951,
     "text": "ImageService",
   },
   Object {
@@ -1372,7 +1394,7 @@ Array [
     "code": 2448,
     "length": 4,
     "messageText": "Block-scoped variable 'type' used before its declaration.",
-    "start": 9170,
+    "start": 9173,
     "text": "type",
   },
   Object {
@@ -1380,13 +1402,13 @@ Array [
     "code": 2454,
     "length": 4,
     "messageText": "Variable 'type' is used before being assigned.",
-    "start": 9170,
+    "start": 9173,
     "text": "type",
   },
   Object {
     "category": 1,
     "code": 2345,
-    "length": 97,
+    "length": 89,
     "messageText": Object {
       "category": 1,
       "code": 2345,
@@ -1418,12 +1440,12 @@ Array [
         },
       },
     },
-    "start": 9684,
+    "start": 9656,
     "text": "{
-    name: 'size',
-    type: FloatType,
-    resolve: () => Promise.resolve('not a number!'),
-  }",
+  name: \\"size\\",
+  type: FloatType,
+  resolve: () => Promise.resolve(\\"not a number!\\"),
+}",
   },
 ]
 `;
@@ -1433,46 +1455,54 @@ Array [
   Object {
     "category": 1,
     "code": 2345,
-    "length": 107,
+    "length": 34,
     "messageText": Object {
       "category": 1,
       "code": 2345,
-      "messageText": "Argument of type '{ name: string; serialize: (value: string) => number; parseValue: (value: number) => string; }' is not assignable to parameter of type 'StrongScalarTypeConfigWithInput<string, number>'.",
+      "messageText": "Argument of type '{ name: string; serialize: (value: string) => number; parseValue: (value: any) => string; }' is not assignable to parameter of type 'StrongScalarTypeConfigWithoutInput<string, number>'.",
       "next": Object {
         "category": 1,
-        "code": 2324,
-        "messageText": "Property 'parseLiteral' is missing in type '{ name: string; serialize: (value: string) => number; parseValue: (value: number) => string; }'.",
+        "code": 2353,
+        "messageText": "Object literal may only specify known properties, and 'parseValue' does not exist in type 'StrongScalarTypeConfigWithoutInput<string, number>'.",
         "next": undefined,
       },
     },
-    "start": 339,
-    "text": "{
-    name: 'foo',
-    serialize: value => parseInt(value, 10),
-    parseValue: value => String(value),
-  }",
+    "start": 450,
+    "text": "parseValue: value => String(value)",
+  },
+  Object {
+    "category": 1,
+    "code": 7006,
+    "length": 5,
+    "messageText": "Parameter 'value' implicitly has an 'any' type.",
+    "start": 462,
+    "text": "value",
   },
   Object {
     "category": 1,
     "code": 2345,
-    "length": 106,
+    "length": 33,
     "messageText": Object {
       "category": 1,
       "code": 2345,
-      "messageText": "Argument of type '{ name: string; serialize: (value: string) => number; parseLiteral: (value: ValueNode) => \\"Variab...' is not assignable to parameter of type 'StrongScalarTypeConfigWithInput<string, number>'.",
+      "messageText": "Argument of type '{ name: string; serialize: (value: string) => number; parseLiteral: (value: any) => any; }' is not assignable to parameter of type 'StrongScalarTypeConfigWithoutInput<string, number>'.",
       "next": Object {
         "category": 1,
-        "code": 2324,
-        "messageText": "Property 'parseValue' is missing in type '{ name: string; serialize: (value: string) => number; parseLiteral: (value: ValueNode) => \\"Variab...'.",
+        "code": 2353,
+        "messageText": "Object literal may only specify known properties, and 'parseLiteral' does not exist in type 'StrongScalarTypeConfigWithoutInput<string, number>'.",
         "next": undefined,
       },
     },
-    "start": 553,
-    "text": "{
-    name: 'foo',
-    serialize: value => parseInt(value, 10),
-    parseLiteral: value => value.kind,
-  }",
+    "start": 664,
+    "text": "parseLiteral: value => value.kind",
+  },
+  Object {
+    "category": 1,
+    "code": 7006,
+    "length": 5,
+    "messageText": "Parameter 'value' implicitly has an 'any' type.",
+    "start": 678,
+    "text": "value",
   },
   Object {
     "category": 1,
@@ -1489,7 +1519,7 @@ Array [
         "next": undefined,
       },
     },
-    "start": 869,
+    "start": 912,
     "text": "type2",
   },
 ]
@@ -1502,16 +1532,16 @@ Array [
     "code": 2345,
     "length": 8,
     "messageText": "Argument of type '\\"string\\"' is not assignable to parameter of type 'number'.",
-    "start": 368,
-    "text": "'string'",
+    "start": 411,
+    "text": "\\"string\\"",
   },
   Object {
     "category": 1,
     "code": 2345,
     "length": 8,
     "messageText": "Argument of type '\\"string\\"' is not assignable to parameter of type 'number'.",
-    "start": 530,
-    "text": "'string'",
+    "start": 573,
+    "text": "\\"string\\"",
   },
   Object {
     "category": 1,
@@ -1531,14 +1561,19 @@ Array [
           "messageText": "Type 'StrongObjectType<string, number>' is not assignable to type 'StrongObjectType<number, number>'.",
           "next": Object {
             "category": 1,
-            "code": 2322,
-            "messageText": "Type 'string' is not assignable to type 'number'.",
-            "next": undefined,
+            "code": 2326,
+            "messageText": "Types of property '_strongValue' are incompatible.",
+            "next": Object {
+              "category": 1,
+              "code": 2322,
+              "messageText": "Type 'string' is not assignable to type 'number'.",
+              "next": undefined,
+            },
           },
         },
       },
     },
-    "start": 875,
+    "start": 918,
     "text": "{
     query,
   }",
@@ -1561,14 +1596,24 @@ Array [
           "messageText": "Type 'StrongObjectType<number, string>' is not assignable to type 'StrongObjectType<number, number>'.",
           "next": Object {
             "category": 1,
-            "code": 2322,
-            "messageText": "Type 'string' is not assignable to type 'number'.",
-            "next": undefined,
+            "code": 2326,
+            "messageText": "Types of property 'getWeakType' are incompatible.",
+            "next": Object {
+              "category": 1,
+              "code": 2322,
+              "messageText": "Type '() => StrongObjectType<number, string>' is not assignable to type '() => StrongObjectType<number, number>'.",
+              "next": Object {
+                "category": 1,
+                "code": 2322,
+                "messageText": "Type 'StrongObjectType<number, string>' is not assignable to type 'StrongObjectType<number, number>'.",
+                "next": undefined,
+              },
+            },
           },
         },
       },
     },
-    "start": 1046,
+    "start": 1089,
     "text": "{
     query,
   }",
@@ -1593,7 +1638,7 @@ Array [
         "next": undefined,
       },
     },
-    "start": 391,
+    "start": 445,
     "text": "output",
   },
   Object {
@@ -1601,7 +1646,7 @@ Array [
     "code": 2322,
     "length": 6,
     "messageText": "Type 'StrongInputType<{}>' is not assignable to type 'StrongOutputType<{}>'.",
-    "start": 597,
+    "start": 651,
     "text": "output",
   },
   Object {
@@ -1619,7 +1664,7 @@ Array [
         "next": undefined,
       },
     },
-    "start": 755,
+    "start": 809,
     "text": "input",
   },
   Object {
@@ -1627,7 +1672,7 @@ Array [
     "code": 2322,
     "length": 5,
     "messageText": "Type 'StrongOutputType<{}>' is not assignable to type 'StrongInputType<{}>'.",
-    "start": 956,
+    "start": 1010,
     "text": "input",
   },
 ]
