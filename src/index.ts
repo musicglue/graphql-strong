@@ -29,7 +29,7 @@ export { createNullableType } from "./nullable";
 
 export { wrapWeakType, IntegerType, FloatType, StringType, BooleanType, IDType } from "./wrap";
 
-export { createSchema } from "./schema";
+export { createSchema, StrongSchema, StrongSchemaConfig } from "./schema";
 
 export { StrongArgsConfig, StrongArgConfig } from "./args";
 
