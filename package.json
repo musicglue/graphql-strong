@@ -3,7 +3,10 @@
   "version": "0.8.0",
   "description": "Define your GraphQL schemas with confidence that your values are correct.",
   "author": "Caleb Meredith <calebmeredith8@gmail.com>",
-  "contributors": ["Lee Henson", "Niklas Lindgren"],
+  "contributors": [
+    "Lee Henson",
+    "Niklas Lindgren"
+  ],
   "license": "MIT",
   "homepage": "https://github.com/calebmer/graphql-strong#readme",
   "repository": {
@@ -54,6 +57,7 @@
     "jest": "^22.4.2",
     "prettier": "^1.11.0",
     "tslint": "^5.9.1",
+    "tslint-immutable": "^4.5.2",
     "typescript": "^2.7.2"
   },
   "jest": {
@@ -75,5 +79,8 @@
     "parser": "typescript",
     "printWidth": 100,
     "trailingComma": "all"
+  },
+  "dependencies": {
+    "newtype-ts": "^0.1.2"
   }
 }

@@ -17,7 +17,8 @@
     "outDir": "build",
     "rootDir": "src",
     "strictNullChecks": true,
-    "target": "es6"
+    "target": "es6",
+    "strict": true
   },
   "exclude": [
     "node_modules",
