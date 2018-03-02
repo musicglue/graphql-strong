@@ -1,6 +1,10 @@
 export { StrongType, StrongInputType, StrongOutputType, StrongInputOutputType } from "./type";
 
-export { createScalarType } from "./scalar";
+export {
+  createScalarType,
+  StrongScalarTypeConfigWithInput,
+  StrongScalarTypeConfigWithoutInput,
+} from "./scalar";
 
 export {
   createObjectType,
