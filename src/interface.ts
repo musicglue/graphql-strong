@@ -5,6 +5,38 @@ import { trimDescriptionsInConfig } from "./description";
 import { StrongObjectType } from "./object";
 import { StrongOutputType } from "./type";
 
+const getInterfaceOptions = <TValue, TFieldMap extends StrongInterfaceFieldMap>(
+  config: StrongInterfaceTypeConfig<TValue, TFieldMap>,
+) => {
+  const options = {
+    description: config.description,
+    // Compute our fields from the fields map we were provided in the config.
+    // The format we define in our config is pretty similar to the format
+    // GraphQL.js expects.
+    fields: (): GraphQLFieldConfigMap<TValue, any> => {
+      const weakFields: GraphQLFieldConfigMap<TValue, any> = {};
+      for (const fieldName of Object.keys(config.fields)) {
+        const fieldConfig = config.fields[fieldName];
+        weakFields[fieldName] = {
+          args: fieldConfig.args && getWeakArgsMap(fieldConfig.args),
+          deprecationReason: fieldConfig.deprecationReason,
+          description: fieldConfig.description,
+          type: fieldConfig.type.getWeakOutputType(),
+        };
+      }
+      return weakFields;
+    },
+    name: config.name,
+  };
+
+  const { resolveType } = config;
+  if (resolveType !== undefined) {
+    Object.assign(options, { resolveType: (value: TValue) => resolveType(value).ofType });
+  }
+
+  return options;
+};
+
 /**
  * Creates a new strong GraphQL interface type. In addition to the runtime
  * configuration object there is also one important type parameter: `TFieldMap`.
@@ -47,7 +79,7 @@ export interface StrongInterfaceFieldMap {
 export interface StrongInterfaceTypeConfig<TValue, TFieldMap extends StrongInterfaceFieldMap> {
   readonly name: string;
   readonly description?: string | undefined;
-  readonly resolveType: (value: TValue) => StrongObjectType<TValue, never>;
+  readonly resolveType?: (value: TValue) => StrongObjectType<TValue, never>;
   readonly fields: StrongInterfaceFieldMapConfig<TFieldMap>;
 }
 
@@ -82,7 +114,7 @@ export type StrongInterfaceImplementation<
 > = {
   readonly [TField in keyof TFieldMap]: StrongInterfaceFieldImplementation<
     TValue,
-    TFieldMap[TField]["args"],
+    any, // TODO: return this to: TFieldMap[TField]["args"],
     TContext,
     TFieldMap[TField]["type"]
   >
@@ -156,27 +188,7 @@ export class StrongNullableInterfaceType<TValue, TFieldMap extends StrongInterfa
   private readonly _strongConfig: StrongInterfaceTypeConfig<TValue, TFieldMap>;
 
   constructor(config: StrongInterfaceTypeConfig<TValue, TFieldMap>) {
-    super({
-      description: config.description,
-      // Compute our fields from the fields map we were provided in the config.
-      // The format we define in our config is pretty similar to the format
-      // GraphQL.js expects.
-      fields: (): GraphQLFieldConfigMap<TValue, never> => {
-        const weakFields: GraphQLFieldConfigMap<TValue, never> = {};
-        for (const fieldName of Object.keys(config.fields)) {
-          const fieldConfig = config.fields[fieldName];
-          weakFields[fieldName] = {
-            args: fieldConfig.args && getWeakArgsMap(fieldConfig.args),
-            deprecationReason: fieldConfig.deprecationReason,
-            description: fieldConfig.description,
-            type: fieldConfig.type.getWeakOutputType(),
-          };
-        }
-        return weakFields;
-      },
-      name: config.name,
-      resolveType: value => config.resolveType(value).ofType,
-    });
+    super(getInterfaceOptions(config));
     this._strongConfig = config;
   }
 
