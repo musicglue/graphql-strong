@@ -1,7 +1,4 @@
-// tslint:disable:object-literal-sort-keys
-// tslint:disable:member-ordering
-// tslint:disable:max-classes-per-file
-// tslint:disable:variable-name
+// tslint:disable:object-literal-sort-keys member-ordering max-classes-per-file variable-name
 import {
   defaultFieldResolver,
   ExecutionResult,

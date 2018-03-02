@@ -1,5 +1,4 @@
-// tslint:disable:variable-name
-// tslint:disable:max-classes-per-file
+// tslint:disable:variable-name max-classes-per-file
 
 import { GraphQLNonNull, GraphQLUnionType } from "graphql";
 import { trimDescriptionsInConfig } from "./description";

@@ -1,5 +1,4 @@
-// tslint:disable:max-classes-per-file
-// tslint:disable:variable-name
+// tslint:disable:max-classes-per-file variable-name
 import { GraphQLEnumType, GraphQLNonNull } from "graphql";
 import { trimDescriptionsInConfig } from "./description";
 import { StrongInputOutputType } from "./type";
