@@ -40,7 +40,7 @@ test("will execute the onExecute function if provided for queries", async () => 
   expect(onExecute.mock.calls[1][1]).toBe(context2);
 });
 
-test("will propogate errors thrown in the onExecute function for queries", async () => {
+test("will propagate errors thrown in the onExecute function for queries", async () => {
   const error = Symbol("error");
   const onExecute = jest.fn(() => {
     throw error;
@@ -84,7 +84,7 @@ test("will execute the onExecute function if provided for queries and resolve if
   expect(onExecute.mock.calls[1][1]).toBe(context2);
 });
 
-test("will propogate errors thrown in the onExecute function for queries if it is a rejected promise", async () => {
+test("will propagate errors thrown in the onExecute function for queries if it is a rejected promise", async () => {
   const error = Symbol("error");
   const onExecute = jest.fn(
     () => new Promise((resolve, reject) => setTimeout(() => reject(error), 5)),
@@ -128,7 +128,7 @@ test("will execute the onExecute function if provided for mutations", async () =
   expect(onExecute.mock.calls[1][1]).toBe(context2);
 });
 
-test("will propogate errors thrown in the onExecute function for mutations", async () => {
+test("will propagate errors thrown in the onExecute function for mutations", async () => {
   const error = Symbol("error");
   const onExecute = jest.fn(() => {
     throw error;
@@ -172,7 +172,7 @@ test("will execute the onExecute function if provided for mutations and resolve 
   expect(onExecute.mock.calls[1][1]).toBe(context2);
 });
 
-test("will propogate errors thrown in the onExecute function for mutations if it is a rejected promise", async () => {
+test("will propagate errors thrown in the onExecute function for mutations if it is a rejected promise", async () => {
   const error = Symbol("error");
   const onExecute = jest.fn(
     () => new Promise((resolve, reject) => setTimeout(() => reject(error), 5)),
