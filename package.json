@@ -80,7 +80,5 @@
     "printWidth": 100,
     "trailingComma": "all"
   },
-  "dependencies": {
-    "newtype-ts": "^0.1.2"
-  }
+  "dependencies": {}
 }
