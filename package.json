@@ -36,15 +36,17 @@
     "build"
   ],
   "scripts": {
+    "ci": "npm run lint && npm run test",
+    "clean": "rm -rf ./build",
+    "compile": "tsc -p .",
+    "build": "npm run format && npm run clean && npm run compile && npm run test",
     "preversion": "npm run ci",
     "prepublish": "npm run build",
     "format": "npm run lint && npm run prettify",
     "lint": "tslint --fix 'src/**/*.ts'",
     "prettify": "find src -name '*.ts' | xargs prettier --write --parser ${npm_package_prettier_parser} --trailing-comma ${npm_package_prettier_trailingComma} --print-width ${npm_package_prettier_printWidth} --list-different",
-    "test": "jest",
-    "test-watch": "jest --watch",
-    "ci": "npm run lint && npm run test",
-    "build": "rm -rf build && tsc"
+    "test": "NODE_ENV=test jest",
+    "test-watch": "NODE_ENV=test jest --watch"
   },
   "peerDependencies": {
     "graphql": ">=0.6.0 <1.0.0"
