@@ -6,7 +6,7 @@
  * removing indentation.
  */
 export function trimDescription(description: string): string {
-  return description.replace(/^ +/gm, '').trim();
+  return description.replace(/^ +/gm, "").trim();
 }
 
 /**
@@ -25,16 +25,20 @@ export function trimDescriptionsInConfig<T extends { [key: string]: any }>(confi
     const value = config[key];
 
     // If the value at this key is an object we need to recurse this function.
-    if (value !== null && typeof value === 'object' && Object.getPrototypeOf(value) === Object.prototype) {
+    if (
+      value !== null &&
+      typeof value === "object" &&
+      Object.getPrototypeOf(value) === Object.prototype
+    ) {
       nextConfig[key] = trimDescriptionsInConfig(value);
-    }
-    // If this key is `description` and the value is a string then we need to
-    // trim the description.
-    else if (key === 'description' && typeof value === 'string') {
+    } else if (key === "description" && typeof value === "string") {
+      // If this key is `description` and the value is a string then we need to
+      // trim the description.
+      // tslint:disable-next-line:one-line
       nextConfig[key] = trimDescription(value);
-    }
-    // Otherwise just copy the value over to the new config.
-    else {
+    } else {
+      // Otherwise just copy the value over to the new config.
+      // tslint:disable-next-line:one-line
       nextConfig[key] = value;
     }
   }

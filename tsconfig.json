@@ -1,19 +1,24 @@
 {
   "compilerOptions": {
-    "outDir": "build",
-    "rootDir": "src",
-    "target": "es6",
-    "module": "commonjs",
     "alwaysStrict": true,
-    "newLine": "LF",
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
+    "lib":[
+      "esnext",
+      "esnext.asynciterable"
+    ],
+    "module": "commonjs",
+    "newLine": "LF",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
-    "strictNullChecks": true
+    "outDir": "build",
+    "rootDir": "src",
+    "strictNullChecks": true,
+    "target": "es6",
+    "strict": true
   },
   "exclude": [
     "node_modules",

@@ -1,9 +1,5 @@
-import {
-  StringType,
-  IntegerType,
-  createInterfaceType,
-  createObjectType,
-} from '../../index';
+// tslint:disable:object-literal-sort-keys
+import { createInterfaceType, createObjectType, IntegerType, StringType } from "../../index";
 
 interface Person {
   name: string;
@@ -13,10 +9,10 @@ interface Person {
 // All good
 {
   const type = createInterfaceType<{
-    foo: { type: string },
-    bar: { type: string | null | undefined },
+    foo: { type: string };
+    bar: { type: string | null | undefined };
   }>({
-    name: 'Foobar',
+    name: "Foobar",
     resolveType: undefined as any,
     fields: {
       foo: { type: StringType },
@@ -28,10 +24,10 @@ interface Person {
 // Bad field type 1
 {
   const type = createInterfaceType<{
-    foo: { type: string },
-    bar: { type: string | null | undefined },
+    foo: { type: string };
+    bar: { type: string | null | undefined };
   }>({
-    name: 'Foobar',
+    name: "Foobar",
     resolveType: undefined as any,
     fields: {
       foo: { type: IntegerType },
@@ -43,10 +39,10 @@ interface Person {
 // Bad field type 2
 {
   const type = createInterfaceType<{
-    foo: { type: string },
-    bar: { type: string | null | undefined },
+    foo: { type: string };
+    bar: { type: string | null | undefined };
   }>({
-    name: 'Foobar',
+    name: "Foobar",
     resolveType: undefined as any,
     fields: {
       foo: { type: StringType },
@@ -58,10 +54,10 @@ interface Person {
 // Missing field 1
 {
   const type = createInterfaceType<{
-    foo: { type: string },
-    bar: { type: string | null | undefined },
+    foo: { type: string };
+    bar: { type: string | null | undefined };
   }>({
-    name: 'Foobar',
+    name: "Foobar",
     resolveType: undefined as any,
     fields: {
       foo: { type: StringType },
@@ -72,10 +68,10 @@ interface Person {
 // Missing field 2
 {
   const type = createInterfaceType<{
-    foo: { type: string },
-    bar: { type: string | null | undefined },
+    foo: { type: string };
+    bar: { type: string | null | undefined };
   }>({
-    name: 'Foobar',
+    name: "Foobar",
     resolveType: undefined as any,
     fields: {
       bar: { type: StringType.nullable() },
@@ -87,14 +83,14 @@ interface Person {
 {
   const type = createInterfaceType<{
     x: {
-      type: string,
+      type: string;
       args: {
-        foo: string,
-        bar: string | null | undefined,
-      },
-    },
+        foo: string;
+        bar: string | null | undefined;
+      };
+    };
   }>({
-    name: 'Foobar',
+    name: "Foobar",
     resolveType: undefined as any,
     fields: {
       x: {
@@ -112,14 +108,14 @@ interface Person {
 {
   const type = createInterfaceType<{
     x: {
-      type: string,
+      type: string;
       args: {
-        foo: string,
-        bar: string | null | undefined,
-      },
-    },
+        foo: string;
+        bar: string | null | undefined;
+      };
+    };
   }>({
-    name: 'Foobar',
+    name: "Foobar",
     resolveType: undefined as any,
     fields: {
       x: {
@@ -137,14 +133,14 @@ interface Person {
 {
   const type = createInterfaceType<{
     x: {
-      type: string,
+      type: string;
       args: {
-        foo: string,
-        bar: string | null | undefined,
-      },
-    },
+        foo: string;
+        bar: string | null | undefined;
+      };
+    };
   }>({
-    name: 'Foobar',
+    name: "Foobar",
     resolveType: undefined as any,
     fields: {
       x: {
@@ -162,14 +158,14 @@ interface Person {
 {
   const type = createInterfaceType<{
     x: {
-      type: string,
+      type: string;
       args: {
-        foo: string,
-        bar: string | null | undefined,
-      },
-    },
+        foo: string;
+        bar: string | null | undefined;
+      };
+    };
   }>({
-    name: 'Foobar',
+    name: "Foobar",
     resolveType: undefined as any,
     fields: {
       x: {
@@ -186,14 +182,14 @@ interface Person {
 {
   const type = createInterfaceType<{
     x: {
-      type: string,
+      type: string;
       args: {
-        foo: string,
-        bar: string | null | undefined,
-      },
-    },
+        foo: string;
+        bar: string | null | undefined;
+      };
+    };
   }>({
-    name: 'Foobar',
+    name: "Foobar",
     resolveType: undefined as any,
     fields: {
       x: {
@@ -209,9 +205,9 @@ interface Person {
 // All good implementation
 {
   const ActorType = createInterfaceType<{
-    name: { type: string },
+    name: { type: string };
   }>({
-    name: 'Actor',
+    name: "Actor",
     resolveType: undefined as any,
     fields: {
       name: {
@@ -221,24 +217,24 @@ interface Person {
   });
 
   const PersonType = createObjectType<Person>({
-    name: 'Person',
+    name: "Person",
   })
-  .implement(ActorType, {
-    name: ({ name }) => name,
-  })
-  .fieldNonNull({
-    name: 'email',
-    type: StringType,
-    resolve: ({ email }) => email,
-  });
+    .implement(ActorType, {
+      name: ({ name }) => name,
+    })
+    .fieldNonNull({
+      name: "email",
+      type: StringType,
+      resolve: ({ email }) => email,
+    });
 }
 
 // Missing field implementation
 {
   const ActorType = createInterfaceType<{
-    name: { type: string },
+    name: { type: string };
   }>({
-    name: 'Actor',
+    name: "Actor",
     resolveType: undefined as any,
     fields: {
       name: {
@@ -248,24 +244,22 @@ interface Person {
   });
 
   const PersonType = createObjectType<Person>({
-    name: 'Person',
+    name: "Person",
   })
-  .implement(ActorType, {
-
-  })
-  .fieldNonNull({
-    name: 'email',
-    type: StringType,
-    resolve: ({ email }) => email,
-  });
+    .implement(ActorType, {})
+    .fieldNonNull({
+      name: "email",
+      type: StringType,
+      resolve: ({ email }) => email,
+    });
 }
 
 // Bad return type
 {
   const ActorType = createInterfaceType<{
-    name: { type: string },
+    name: { type: string };
   }>({
-    name: 'Actor',
+    name: "Actor",
     resolveType: undefined as any,
     fields: {
       name: {
@@ -275,14 +269,14 @@ interface Person {
   });
 
   const PersonType = createObjectType<Person>({
-    name: 'Person',
+    name: "Person",
   })
-  .implement(ActorType, {
-    name: () => 42,
-  })
-  .fieldNonNull({
-    name: 'email',
-    type: StringType,
-    resolve: ({ email }) => email,
-  });
+    .implement(ActorType, {
+      name: () => 42,
+    })
+    .fieldNonNull({
+      name: "email",
+      type: StringType,
+      resolve: ({ email }) => email,
+    });
 }

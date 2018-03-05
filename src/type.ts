@@ -1,4 +1,4 @@
-import { GraphQLType, GraphQLInputType, GraphQLOutputType } from 'graphql';
+import { GraphQLInputType, GraphQLOutputType, GraphQLType } from "graphql";
 
 /**
  * A strong GraphQL type which when composed with other strong GraphQL types
@@ -92,7 +92,10 @@ export interface StrongOutputType<TValue> extends StrongType<TValue> {
  * A convenience interface that merges both `StrongInputType` and
  * `StrongOutputType`.
  */
-export interface StrongInputOutputType<TValue> extends StrongType<TValue>, StrongInputType<TValue>, StrongOutputType<TValue> {
+export interface StrongInputOutputType<TValue>
+  extends StrongType<TValue>,
+    StrongInputType<TValue>,
+    StrongOutputType<TValue> {
   /**
    * Gets a nullable variation of this type since types are non-null by default.
    * If this type is already nullable, the type may return itself.
