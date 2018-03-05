@@ -31,7 +31,19 @@ export { createInputListType, createListType, createOutputListType } from "./lis
 
 export { createNullableType } from "./nullable";
 
-export { wrapWeakType, IntegerType, FloatType, StringType, BooleanType, IDType } from "./wrap";
+export {
+  wrapWeakType,
+  IntegerType,
+  IntegerListType,
+  FloatType,
+  FloatListType,
+  StringType,
+  StringListType,
+  BooleanType,
+  BooleanListType,
+  IDType,
+  IDTypeListType,
+} from "./wrap";
 
 export { createSchema, StrongSchema, StrongSchemaConfig } from "./schema";
 
@@ -40,10 +52,10 @@ export { StrongArgsConfig, StrongArgConfig } from "./args";
 export { trimDescription } from "./description";
 
 export {
-  // createUnionType,
-  // StrongUnionType,
-  // StrongUnionTypeConfig,
-  // StrongNullableUnionType,
+  createUnionType,
+  StrongUnionType,
+  StrongUnionTypeConfig,
+  StrongNullableUnionType,
   createUnionType2,
   createUnionType3,
   createUnionType4,
