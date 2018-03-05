@@ -14,9 +14,6 @@ export {
   StrongFieldConfigWithArgs,
   StrongObjectType,
   StrongNullableObjectType,
-} from "./object";
-
-export {
   createInterfaceType,
   StrongInterfaceFieldMap,
   StrongInterfaceTypeConfig,
@@ -26,7 +23,7 @@ export {
   StrongInterfaceFieldImplementation,
   StrongInterfaceType,
   StrongNullableInterfaceType,
-} from "./interface";
+} from "./interfaceObject";
 
 export { createEnumType } from "./enum";
 
