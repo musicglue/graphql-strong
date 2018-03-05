@@ -1,6 +1,6 @@
 {
   "name": "@musicglue/graphql-strong",
-  "version": "0.8.0",
+  "version": "1.0.0",
   "description": "Define your GraphQL schemas with confidence that your values are correct.",
   "author": "Caleb Meredith <calebmeredith8@gmail.com>",
   "contributors": [
