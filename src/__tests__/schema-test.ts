@@ -1,6 +1,6 @@
 // tslint:disable:object-literal-sort-keys
 import { graphql, GraphQLError } from "graphql";
-import { createObjectType } from "../object";
+import { createObjectType } from "../interfaceObject";
 import { createSchema } from "../schema";
 import { IntegerType } from "../wrap";
 

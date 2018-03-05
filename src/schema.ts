@@ -9,7 +9,7 @@ import {
   GraphQLSchema,
   OperationDefinitionNode,
 } from "graphql";
-import { StrongObjectType } from "./object";
+import { StrongObjectType } from "./interfaceObject";
 
 /**
  * Creates a strong, type-safe, GraphQL schema that forces correctness on

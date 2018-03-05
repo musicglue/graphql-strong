@@ -2,7 +2,7 @@
 
 import { GraphQLNonNull, GraphQLUnionType } from "graphql";
 import { trimDescriptionsInConfig } from "./description";
-import { StrongObjectType } from "./object";
+import { StrongObjectType } from "./interfaceObject";
 import { StrongOutputType } from "./type";
 
 export function createUnionType<TInput, TContext>(
