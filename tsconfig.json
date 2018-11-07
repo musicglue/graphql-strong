@@ -21,6 +21,7 @@
     "strict": true
   },
   "exclude": [
+    "build",
     "node_modules",
     "**/__tests__/*.ts",
     "**/__tests__/*/*.ts"
