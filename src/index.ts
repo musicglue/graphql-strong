@@ -60,6 +60,7 @@ export {
   createUnionType3,
   createUnionType4,
   createUnionType5,
+  createUnionType9,
   createUnionType10,
   StrongNullableUnionType2,
   StrongNullableUnionType3,
